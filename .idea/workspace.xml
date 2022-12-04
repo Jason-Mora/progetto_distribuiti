@@ -4,27 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="connessione grezzotta tra client e server completata">
-      <change afterPath="$PROJECT_DIR$/src/chess_client/LossPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_client/MainFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/alfiere.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/cavallo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/pedina.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/re.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/regina.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/torre.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/alfiere.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/cavallo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/pedina.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/re.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/regina.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/torre.png" afterDir="false" />
+    <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="scacchiera">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto_distribuiti.iml" beforeDir="false" afterPath="$PROJECT_DIR$/progetto_distribuiti.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_server/MatchMakingImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_server/MatchMakingImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_server/MatchMakingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_server/MatchMakingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_bianchi/alfiere.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_bianchi/alfiere.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_bianchi/cavallo.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_bianchi/cavallo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_bianchi/pedina.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_bianchi/pedina.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_bianchi/re.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_bianchi/re.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_bianchi/regina.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_bianchi/regina.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_bianchi/torre.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_bianchi/torre.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_neri/alfiere.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_neri/alfiere.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_neri/cavallo.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_neri/cavallo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_neri/pedina.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_neri/pedina.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_neri/re.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_neri/re.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_neri/regina.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_neri/regina.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/pezzi_neri/torre.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/pezzi_neri/torre.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +68,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Jason\Data\universita\5\ALGORITMI DISTRIBUITI\progetto\progetto_distribuiti\src\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jason\Data\universita\5\ALGORITMI DISTRIBUITI\progetto\progetto_distribuiti\res\pezzi_bianchi" />
+      <recent name="C:\Users\Jason\Data\universita\5\ALGORITMI DISTRIBUITI\progetto\progetto_distribuiti\res\pezzi_neri" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -135,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670105373395</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="scacchiera">
+      <created>1670162323458</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1670162323458</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,7 +163,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Inizializzazione progetto" />
     <MESSAGE value="connessione grezzotta tra client e server completata" />
-    <option name="LAST_COMMIT_MESSAGE" value="connessione grezzotta tra client e server completata" />
+    <MESSAGE value="scacchiera" />
+    <option name="LAST_COMMIT_MESSAGE" value="scacchiera" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -162,6 +173,11 @@
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/chess_server/MatchMakingImp.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -55,20 +55,20 @@ public class MainFrame extends JFrame implements ActionListener {
         }
         System.out.println("Inizia partita");
         if(IP != null && mms != null && PORT != null) {
-            String opponent = null;
             try {
                 if (mms.enterMatchMaking(IP+":"+PORT)) {
+                    String[] opponent = mms.getOpponentIP(IP+":"+PORT);
                     long startTime = System.currentTimeMillis();
-                    while(opponent == null && System.currentTimeMillis()-startTime<=6000)
+                    while(opponent[0] == null && System.currentTimeMillis()-startTime<=6000)
                     {
                         opponent = mms.getOpponentIP(IP+":"+PORT);
                     }
-                    if (opponent == null) {
+                    if (opponent[0] == null) {
                         mms.leaveMatchmaking(IP+":"+PORT);
                         System.out.println("Dopo un minuto non è stato possibile trovare un giocatore, riprovare più tardi");
                     } else {
-                        System.out.println("Giocatore con IP " + opponent + " accoppiato");
-                        JFrame matchFrame = new MatchFrame("gioco");
+                        System.out.println("Giocatore con IP " + opponent[0] + " accoppiato");
+                        JFrame matchFrame = new MatchFrame("gioco", opponent);
                         this.dispose();
                     }
                 }
