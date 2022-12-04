@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="connessione grezzotta tra client e server completata">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_server/MatchMakingImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_server/MatchMakingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/chess_server/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess_client/LossPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess_client/MainFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/alfiere.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/cavallo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/pedina.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/re.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/regina.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_bianchi/torre.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/alfiere.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/cavallo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/pedina.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/re.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/regina.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/pezzi_neri/torre.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto_distribuiti.iml" beforeDir="false" afterPath="$PROJECT_DIR$/progetto_distribuiti.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,16 +55,25 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jason/Data/universita/5/ALGORITMI DISTRIBUITI/progetto/progetto_distribuiti/lib/jar_files (3)/woodstox-core-6.2.8.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Jason/Data/universita/5/ALGORITMI DISTRIBUITI/progetto/progetto_distribuiti/src/resources&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Jason\Data\universita\5\ALGORITMI DISTRIBUITI\progetto\progetto_distribuiti\src\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="chess_client.Client" />
@@ -107,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670063765234</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="connessione grezzotta tra client e server completata">
+      <created>1670105373395</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670105373395</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,6 +150,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Inizializzazione progetto" />
     <MESSAGE value="connessione grezzotta tra client e server completata" />
     <option name="LAST_COMMIT_MESSAGE" value="connessione grezzotta tra client e server completata" />
