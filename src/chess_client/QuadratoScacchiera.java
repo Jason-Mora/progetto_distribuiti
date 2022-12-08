@@ -12,9 +12,20 @@ public class QuadratoScacchiera extends JButton {
     public QuadratoScacchiera(Color backgColor, String colorePezzo, String tipoPezzo) {
         super();
         this.setBackground(backgColor);
+        this.setSize(100, 100);
         setColorePezzo(colorePezzo);
         setTipoPezzo(tipoPezzo);
         setIcona();
+    }
+
+    public QuadratoScacchiera(String colorePezzo, String tipoPezzo) {
+        super();
+        this.setBackground(Color.white);
+        this.setSize(50, 50);
+        setColorePezzo(colorePezzo);
+        setTipoPezzo(tipoPezzo);
+        setIcona();
+        this.setEnabled(false);
     }
 
     //POSIZIONE
@@ -57,7 +68,7 @@ public class QuadratoScacchiera extends JButton {
             } else {
                 icon = new ImageIcon("./res/pezzi_bianchi/" + tipoPezzo + ".png");
             }
-            this.setIcon(new ImageIcon(icon.getImage().getScaledInstance(this.getWidth()-10, (this.getHeight()-10)/2, 1)));
+            this.setIcon(new ImageIcon(icon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), 1)));
         }
         else {
             removeIcona();

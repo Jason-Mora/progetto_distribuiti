@@ -9,17 +9,23 @@ public class PlayPanel extends JPanel implements ActionListener {
     String opponent;
     String colore;
     QuadratoScacchiera[][] scacchiera;
+    LossPanel mangiatiBianchi, mangiatiNeri;
     boolean selezionaCella = false;
     int rigaCellaSelezionata = 0;
     int colonnaCellaSelezionata = 0;
     String pezzoCellaSelezionata = null;
 
-    public PlayPanel(String colore, String opponent) {
+    public PlayPanel(String colore, String opponent, LossPanel neri, LossPanel bianchi) {
         super();
         this.colore = colore;
         this.opponent = opponent;
+        this.setSize(800, 800);
+        this.setMaximumSize(new Dimension(800, 800));
         this.setLayout(new GridLayout(8, 8));
+        this.mangiatiBianchi = bianchi;
+        this.mangiatiNeri = neri;
         scacchiera = inizializzaScacchiera();
+        this.setBackground(Color.blue);
     }
 
     private QuadratoScacchiera[][] inizializzaScacchiera()
@@ -87,17 +93,36 @@ public class PlayPanel extends JPanel implements ActionListener {
             pezzoCellaSelezionata = qs.getTipoPezzo();
             selezionaCella = true;
         }
-        else //devo posizionare il pezzo
+        else if(selezionaCella)//devo posizionare il pezzo
         {
-            if(qs.getTipoPezzo()==null && permittedMove(qs.getRiga(), qs.getColonna()))
+            if(permittedMove(qs.getRiga(), qs.getColonna()))
             {
+                if(qs.getColorePezzo()!=null && qs.getColorePezzo().equals(colore.equals("nero")?"bianco":"nero")) {
+                    QuadratoScacchiera mangiato = new QuadratoScacchiera(colore.equals("nero")?Color.WHITE:Color.BLACK, qs.getColorePezzo(), qs.getTipoPezzo());
+                    switch (colore)
+                    {
+                        case "nero":
+                            mangiatiNeri.addPedina(mangiato.getColorePezzo(), mangiato.getTipoPezzo());
+                            break;
+                        case "bianco":
+                            mangiatiBianchi.addPedina(mangiato.getColorePezzo(), mangiato.getTipoPezzo());
+                            break;
+                    }
+                }
                 scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setColorePezzo(null);
                 scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setTipoPezzo(null);
                 scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setIcona();
                 scacchiera[qs.getRiga()][qs.getColonna()].setTipoPezzo(pezzoCellaSelezionata);
                 scacchiera[qs.getRiga()][qs.getColonna()].setColorePezzo(colore);
                 scacchiera[qs.getRiga()][qs.getColonna()].setIcona();
+                rigaCellaSelezionata = -1;
+                colonnaCellaSelezionata = -1;
+                pezzoCellaSelezionata = null;
             }
+            selezionaCella = false;
+        }
+        else
+        {
             selezionaCella = false;
         }
     }

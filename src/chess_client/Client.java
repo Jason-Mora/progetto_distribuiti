@@ -16,6 +16,6 @@ public class Client {
     public static void main(String[] args)
     {
         //FINESTRA
-        JFrame mainFrame = new MainFrame("SCACCHI");
+        JFrame frame = new MainFrame("SCACCHI");
     }
 }
