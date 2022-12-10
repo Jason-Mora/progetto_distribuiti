@@ -1,4 +1,6 @@
-package chess_client;
+package client;
+
+import model.Giocatore;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,26 +8,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayPanel extends JPanel implements ActionListener {
-    String opponent;
+    Giocatore avversario;
     String colore;
+    MatchFrame parent;
     QuadratoScacchiera[][] scacchiera;
-    LossPanel mangiatiBianchi, mangiatiNeri;
     boolean selezionaCella = false;
     int rigaCellaSelezionata = 0;
     int colonnaCellaSelezionata = 0;
     String pezzoCellaSelezionata = null;
 
-    public PlayPanel(String colore, String opponent, LossPanel neri, LossPanel bianchi) {
+    public PlayPanel(MatchFrame parent, String colore, Giocatore avversario) {
         super();
         this.colore = colore;
-        this.opponent = opponent;
-        this.setSize(800, 800);
-        this.setMaximumSize(new Dimension(800, 800));
+        this.avversario = avversario;
+        this.parent = parent;
+        this.setSize();
         this.setLayout(new GridLayout(8, 8));
-        this.mangiatiBianchi = bianchi;
-        this.mangiatiNeri = neri;
         scacchiera = inizializzaScacchiera();
-        this.setBackground(Color.blue);
+    }
+
+    private void setSize() {
+        this.setSize(this.parent.getSize());
     }
 
     private QuadratoScacchiera[][] inizializzaScacchiera()
@@ -71,7 +74,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                         tipoPezzo = "pedina";
                     }
                 }
-                QuadratoScacchiera b = new QuadratoScacchiera(isWhite?Color.WHITE:Color.BLACK, colorePezzo, tipoPezzo);
+                QuadratoScacchiera b = new QuadratoScacchiera(this, isWhite?Color.WHITE:Color.BLACK, colorePezzo, tipoPezzo);
                 b.addActionListener(this);
                 b.setPosition(i, j);
                 scacchiera[i][j] = b;
@@ -97,18 +100,6 @@ public class PlayPanel extends JPanel implements ActionListener {
         {
             if(permittedMove(qs.getRiga(), qs.getColonna()))
             {
-                if(qs.getColorePezzo()!=null && qs.getColorePezzo().equals(colore.equals("nero")?"bianco":"nero")) {
-                    QuadratoScacchiera mangiato = new QuadratoScacchiera(colore.equals("nero")?Color.WHITE:Color.BLACK, qs.getColorePezzo(), qs.getTipoPezzo());
-                    switch (colore)
-                    {
-                        case "nero":
-                            mangiatiNeri.addPedina(mangiato.getColorePezzo(), mangiato.getTipoPezzo());
-                            break;
-                        case "bianco":
-                            mangiatiBianchi.addPedina(mangiato.getColorePezzo(), mangiato.getTipoPezzo());
-                            break;
-                    }
-                }
                 scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setColorePezzo(null);
                 scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setTipoPezzo(null);
                 scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setIcona();
@@ -288,5 +279,10 @@ public class PlayPanel extends JPanel implements ActionListener {
             default:
                 return false;
         }
+    }
+
+    public void muoviPezzo(int sourceRow, int sourceCol, int destRow, int destCol)
+    {
+
     }
 }

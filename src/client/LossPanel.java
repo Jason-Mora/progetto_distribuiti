@@ -1,9 +1,8 @@
-package chess_client;
+package client;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.concurrent.Flow;
 
 public class LossPanel extends JPanel {
     private ArrayList<JButton> pedine;

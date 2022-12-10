@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="librerie">
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/client/MatchFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Giocatore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/LossPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/LossPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/LossPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LossPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PlayPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/QuadratoScacchiera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_server/MatchMakingImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MatchMakingImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_server/MatchMakingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MatchMakingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chess_server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +58,7 @@
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propGUI"
+    "settings.editor.selected.configurable": "preferences.intentionPowerPack"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -69,11 +75,11 @@
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chess_client.Client" />
+      <option name="MAIN_CLASS_NAME" value="client.Client" />
       <module name="progetto_distribuiti" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chess_client.*" />
+          <option name="PATTERN" value="client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -82,11 +88,11 @@
       </method>
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="chess_server.Server" />
+      <option name="MAIN_CLASS_NAME" value="server.Server" />
       <module name="progetto_distribuiti" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="chess_server.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -179,11 +185,6 @@
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/chess_server/MatchMakingImp.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -1,4 +1,4 @@
-package chess_server;
+package server;
 
 
 import java.rmi.RemoteException;

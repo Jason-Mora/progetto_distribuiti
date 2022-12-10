@@ -1,23 +1,31 @@
-package chess_client;
+package client;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class QuadratoScacchiera extends JButton {
+    JPanel parent;
     private int riga;
     private int colonna;
     private String colorePezzo;
     private String tipoPezzo;
 
-    public QuadratoScacchiera(Color backgColor, String colorePezzo, String tipoPezzo) {
+    public QuadratoScacchiera(JPanel parent, Color backgColor, String colorePezzo, String tipoPezzo) {
         super();
+        this.parent = parent;
+        this.setSize();
         this.setBackground(backgColor);
-        this.setSize(100, 100);
         setColorePezzo(colorePezzo);
         setTipoPezzo(tipoPezzo);
         setIcona();
     }
 
+    private void setSize() {
+        Dimension dim = this.parent.getSize();
+        dim.width = (int)dim.getWidth()/8;
+        dim.height = (int)dim.getHeight()/8;
+        this.setSize(dim);
+    }
     public QuadratoScacchiera(String colorePezzo, String tipoPezzo) {
         super();
         this.setBackground(Color.white);
