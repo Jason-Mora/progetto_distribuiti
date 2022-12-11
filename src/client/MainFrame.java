@@ -50,7 +50,7 @@ public class MainFrame extends JFrame implements ActionListener {
         {
             mms = (MatchMakingService) Naming.lookup("rmi://localhost:5099/chess");
             giocatore.setIp(InetAddress.getLocalHost().getHostAddress());
-            giocatore.setPort((new ServerSocket(0)).getLocalPort());
+            giocatore.setCasualPort();
         }
         catch (NotBoundException | IOException e)
         {

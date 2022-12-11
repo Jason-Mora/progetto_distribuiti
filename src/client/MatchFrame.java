@@ -7,13 +7,13 @@ import java.awt.*;
 public class MatchFrame extends JFrame {
     private Giocatore giocatore, avversario;
     PlayPanel scacchiera;
-    public MatchFrame(String title, Giocatore giocatore, Giocatore avversario)throws HeadlessException {
+    public MatchFrame(String title, Giocatore giocatore, Giocatore avversario) throws HeadlessException {
         super(title + " - " + giocatore.getColore());
         this.giocatore = giocatore;
         this.avversario = avversario;
         this.initializeFrame();
         //SCHACCHIERA
-        this.scacchiera = new PlayPanel(this, giocatore.getColore(), avversario);
+        this.scacchiera = new PlayPanel(this);
         this.setContentPane(scacchiera);
         this.setVisible(true);
     }
@@ -34,8 +34,15 @@ public class MatchFrame extends JFrame {
         this.setLocation(screenSize.width/2-this.getSize().width/2, 0);
     }
 
-    public void move(int sourceRow, int sourceCol, int destRow, int destCol)
+    public PlayPanel getScacchiera()
     {
-        this.scacchiera.muoviPezzo(sourceRow, sourceCol, destRow, destCol);
+        return this.scacchiera;
+    }
+
+    public Giocatore getGiocatore() {
+        return giocatore;
+    }
+    public Giocatore getAvversario() {
+        return avversario;
     }
 }

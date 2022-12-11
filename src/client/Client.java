@@ -8,43 +8,71 @@ import java.io.*;
 
 public class Client {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         //FINESTRA
         MainFrame frame = new MainFrame("SCACCHI");
 
-        Giocatore avversario = frame.getAvversario();
-        while(avversario==null)
+        Giocatore avversario;
+        Giocatore giocatore;
+        //attendo di essere assegnato ad un giocatore avversario
+        while(true)
         {
             avversario = frame.getAvversario();
-            System.out.println("khgghgg");
+            Thread.sleep(100);
+            if(avversario != null) {
+                break;
+            }
         }
 
-        System.out.println("suuuu");
-
-
+        //sono stato assegnato
         if(avversario!=null)
         {
+            giocatore = frame.getGiocatore();
             frame.dispose();
             MatchFrame matchFrame = new MatchFrame("gioco", frame.getGiocatore(), avversario);
 
             //SOCKET SERVER
-            ServerSocket ss = new ServerSocket(3333);
-            Socket s = ss.accept();
-            DataInputStream din = new DataInputStream(s.getInputStream());
-            DataOutputStream dout = new DataOutputStream(s.getOutputStream());
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            ServerSocket serverSocket = new ServerSocket(giocatore.getPort());
+            Socket avversarioSocket = avversario.getSocket();
+            DataInputStream readSocket = new DataInputStream(avversarioSocket.getInputStream());
+            DataOutputStream writeSocket = new DataOutputStream(serverSocket.accept().getOutputStream());
 
             //GAME
-            String str = "", str2 = "";
-            while (!str.equals("stop")) {
-                str = din.readUTF();
-                System.out.println("client says: " + str);
-                str2 = br.readLine();
-                dout.writeUTF(str2);
-                dout.flush();
+            boolean turno = giocatore.isWhite();
+            PlayPanel scacchiera = matchFrame.getScacchiera();
+            scacchiera.setTurno(turno);
+            while(!scacchiera.giocoFinito())
+            {
+                if(turno)
+                {
+                    String move = null;
+                    while(move==null)
+                    {
+                        move = scacchiera.getMove();
+                        Thread.sleep(100);
+                        if(move != null) {
+                            break;
+                        }
+                    }
+                    scacchiera.resetMove();
+                    writeSocket.writeUTF(move);
+                    writeSocket.flush();
+                    turno = false;
+                    scacchiera.setTurno(false);
+                }
+                else
+                {
+                    String str = readSocket.readUTF();
+                    String[] moveString = str.split(" ");
+                    scacchiera.muoviPezzo(Integer.parseInt(moveString[0]), Integer.parseInt(moveString[1]), Integer.parseInt(moveString[2]), Integer.parseInt(moveString[3]));
+                    turno = true;
+                    scacchiera.setTurno(true);
+                }
             }
-        }
-        else {
+            EndGame endGameFrame = new EndGame(giocatore, scacchiera.getVincitore());
+            matchFrame.dispose();
+            System.out.println("FINE");
+            endGameFrame.setVisible(true);
         }
     }
 }

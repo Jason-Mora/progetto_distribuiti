@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayPanel extends JPanel implements ActionListener {
-    Giocatore avversario;
     String colore;
     MatchFrame parent;
     QuadratoScacchiera[][] scacchiera;
@@ -16,11 +15,12 @@ public class PlayPanel extends JPanel implements ActionListener {
     int rigaCellaSelezionata = 0;
     int colonnaCellaSelezionata = 0;
     String pezzoCellaSelezionata = null;
+    String move = null;
+    boolean turno = false;
 
-    public PlayPanel(MatchFrame parent, String colore, Giocatore avversario) {
+    public PlayPanel(MatchFrame parent) {
         super();
-        this.colore = colore;
-        this.avversario = avversario;
+        this.colore = parent.getGiocatore().getColore();
         this.parent = parent;
         this.setSize();
         this.setLayout(new GridLayout(8, 8));
@@ -87,34 +87,32 @@ public class PlayPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        QuadratoScacchiera qs = (QuadratoScacchiera) actionEvent.getSource();
-        System.out.println(qs.toString());
-        if(!selezionaCella && qs.getColorePezzo()!=null && qs.getColorePezzo().equals(this.colore)) //ho selezionato un pezzo
-        {
-            rigaCellaSelezionata = qs.getRiga();
-            colonnaCellaSelezionata = qs.getColonna();
-            pezzoCellaSelezionata = qs.getTipoPezzo();
-            selezionaCella = true;
-        }
-        else if(selezionaCella)//devo posizionare il pezzo
-        {
-            if(permittedMove(qs.getRiga(), qs.getColonna()))
+        if(getTurno()) {
+            this.move = null;
+            QuadratoScacchiera qs = (QuadratoScacchiera) actionEvent.getSource();
+            System.out.println(qs.toString());
+            if (!selezionaCella && qs.getColorePezzo() != null && qs.getColorePezzo().equals(this.colore)) //ho selezionato un pezzo
             {
-                scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setColorePezzo(null);
-                scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setTipoPezzo(null);
-                scacchiera[rigaCellaSelezionata][colonnaCellaSelezionata].setIcona();
-                scacchiera[qs.getRiga()][qs.getColonna()].setTipoPezzo(pezzoCellaSelezionata);
-                scacchiera[qs.getRiga()][qs.getColonna()].setColorePezzo(colore);
-                scacchiera[qs.getRiga()][qs.getColonna()].setIcona();
-                rigaCellaSelezionata = -1;
-                colonnaCellaSelezionata = -1;
-                pezzoCellaSelezionata = null;
+                rigaCellaSelezionata = qs.getRiga();
+                colonnaCellaSelezionata = qs.getColonna();
+                pezzoCellaSelezionata = qs.getTipoPezzo();
+                selezionaCella = true;
+            } else if (selezionaCella)//devo posizionare il pezzo
+            {
+                if (permittedMove(qs.getRiga(), qs.getColonna())) {
+                    muoviPezzo(rigaCellaSelezionata, colonnaCellaSelezionata, qs.getRiga(), qs.getColonna());
+                    this.move = rigaCellaSelezionata+" "+colonnaCellaSelezionata+" "+qs.getRiga()+" "+qs.getColonna();
+                    rigaCellaSelezionata = -1;
+                    colonnaCellaSelezionata = -1;
+                    pezzoCellaSelezionata = null;
+                }
+                selezionaCella = false;
+            } else {
+                selezionaCella = false;
             }
-            selezionaCella = false;
         }
-        else
-        {
-            selezionaCella = false;
+        else {
+            System.out.print("Non è il tuo turno");
         }
     }
 
@@ -123,10 +121,18 @@ public class PlayPanel extends JPanel implements ActionListener {
         switch (pezzoCellaSelezionata)
         {
             case "pedina":
-                if (colore.equals("nero"))
-                    return (colonna==colonnaCellaSelezionata && rigaCellaSelezionata+1==riga);
-                else
-                    return (colonna==colonnaCellaSelezionata && rigaCellaSelezionata-1==riga);
+                if(scacchiera[riga][colonna].getTipoPezzo()==null) {
+                    if (colore.equals("nero"))
+                        return (colonna == colonnaCellaSelezionata && rigaCellaSelezionata + 1 == riga);
+                    else
+                        return (colonna == colonnaCellaSelezionata && rigaCellaSelezionata - 1 == riga);
+                }
+                else {
+                    if (colore.equals("nero"))
+                        return ((colonnaCellaSelezionata==colonna+1 || colonnaCellaSelezionata==colonna-1) && rigaCellaSelezionata + 1 == riga);
+                    else
+                        return ((colonnaCellaSelezionata==colonna+1 || colonnaCellaSelezionata==colonna-1) && rigaCellaSelezionata - 1 == riga);
+                }
             case "torre":
                 int startIndex;
                 int endIndex;
@@ -166,7 +172,10 @@ public class PlayPanel extends JPanel implements ActionListener {
                 }
                 return false;
             case "alfiere":
-                return (Math.abs(riga-rigaCellaSelezionata)==Math.abs(colonna-colonnaCellaSelezionata));
+                if (Math.abs(riga-rigaCellaSelezionata)==Math.abs(colonna-colonnaCellaSelezionata))
+                {
+
+                }
             case "cavallo":
                 if(riga==rigaCellaSelezionata+1 && colonna==colonnaCellaSelezionata+2)
                     return true;
@@ -283,6 +292,54 @@ public class PlayPanel extends JPanel implements ActionListener {
 
     public void muoviPezzo(int sourceRow, int sourceCol, int destRow, int destCol)
     {
+        QuadratoScacchiera qs = scacchiera[sourceRow][sourceCol];
+        QuadratoScacchiera qd = scacchiera[destRow][destCol];
+        qd.setTipoPezzo(qs.getTipoPezzo());
+        qd.setColorePezzo(qs.getColorePezzo());
+        qd.setIcona();
+        qs.setTipoPezzo(null);
+        qs.setColorePezzo(null);
+        qs.setIcona();
+    }
 
+    public boolean giocoFinito() {
+        int countRe = 0;
+        for(int i=0;i<scacchiera.length; i++)
+        {
+            for(int j=0;j<scacchiera[i].length;j++)
+            {
+                if(scacchiera[i][j].getTipoPezzo()!=null && scacchiera[i][j].getTipoPezzo().equals("re"))
+                    countRe++;
+                if(countRe==2)
+                    return false;
+            }
+        }
+        return true;
+    }
+    public String getVincitore() {
+        for(int i=0;i<scacchiera.length; i++)
+        {
+            for(int j=0;j<scacchiera[i].length;j++)
+            {
+                if(scacchiera[i][j].getTipoPezzo()!=null && scacchiera[i][j].getTipoPezzo().equals("re"))
+                    return scacchiera[i][j].getColorePezzo();
+            }
+        }
+        return null;
+    }
+
+    public String getMove() {
+        return this.move;
+    }
+    public void resetMove()
+    {
+        this.move = null;
+    }
+
+    public boolean getTurno() {
+        return this.turno;
+    }
+    public void setTurno(boolean turno) {
+        this.turno = turno;
     }
 }

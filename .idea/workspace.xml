@@ -4,20 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="librerie">
-      <change afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/client/MatchFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Giocatore.java" afterDir="false" />
+    <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="Introduzione classe Giocatore e adattamento su di essa">
+      <change afterPath="$PROJECT_DIR$/src/client/EndGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/PezzoScacchiera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/LossPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LossPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/MatchFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PlayPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_client/QuadratoScacchiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/QuadratoScacchiera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_server/MatchMakingImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MatchMakingImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_server/MatchMakingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MatchMakingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/chess_server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/LossPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/MatchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MatchFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PlayPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/QuadratoScacchiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/QuadratoScacchiera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Giocatore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +55,7 @@
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.intentionPowerPack"
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -155,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670173876163</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Introduzione classe Giocatore e adattamento su di essa">
+      <created>1670707523437</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670707523437</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,7 +180,8 @@
     <MESSAGE value="scacchiera" />
     <MESSAGE value="movimento pedine" />
     <MESSAGE value="librerie" />
-    <option name="LAST_COMMIT_MESSAGE" value="librerie" />
+    <MESSAGE value="Introduzione classe Giocatore e adattamento su di essa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduzione classe Giocatore e adattamento su di essa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

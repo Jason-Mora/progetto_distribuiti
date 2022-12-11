@@ -1,5 +1,7 @@
 package client;
 
+import model.PezzoScacchiera;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,17 +9,18 @@ public class QuadratoScacchiera extends JButton {
     JPanel parent;
     private int riga;
     private int colonna;
-    private String colorePezzo;
-    private String tipoPezzo;
+    private PezzoScacchiera pezzo;
 
-    public QuadratoScacchiera(JPanel parent, Color backgColor, String colorePezzo, String tipoPezzo) {
+    public QuadratoScacchiera(PlayPanel parent, Color backgColor, String colorePezzo, String tipoPezzo) {
         super();
         this.parent = parent;
         this.setSize();
         this.setBackground(backgColor);
-        setColorePezzo(colorePezzo);
-        setTipoPezzo(tipoPezzo);
+        this.pezzo = new PezzoScacchiera(colorePezzo, tipoPezzo);
         setIcona();
+    }
+    public QuadratoScacchiera(PlayPanel parent, String colorePezzo, String tipoPezzo) {
+        this(parent, Color.white, colorePezzo, tipoPezzo);
     }
 
     private void setSize() {
@@ -25,15 +28,6 @@ public class QuadratoScacchiera extends JButton {
         dim.width = (int)dim.getWidth()/8;
         dim.height = (int)dim.getHeight()/8;
         this.setSize(dim);
-    }
-    public QuadratoScacchiera(String colorePezzo, String tipoPezzo) {
-        super();
-        this.setBackground(Color.white);
-        this.setSize(50, 50);
-        setColorePezzo(colorePezzo);
-        setTipoPezzo(tipoPezzo);
-        setIcona();
-        this.setEnabled(false);
     }
 
     //POSIZIONE
@@ -55,26 +49,27 @@ public class QuadratoScacchiera extends JButton {
     }
 
     //PEZZO
-
     public String getColorePezzo() {
-        return colorePezzo;
+        return pezzo.getColore();
     }
     public void setColorePezzo(String colorePezzo) {
-        this.colorePezzo = colorePezzo;
+        pezzo.setColore(colorePezzo);
     }
     public String getTipoPezzo() {
-        return tipoPezzo;
+        return pezzo.getTipo();
     }
     public void setTipoPezzo(String tipoPezzo) {
-        this.tipoPezzo = tipoPezzo;
+        pezzo.setTipo(tipoPezzo);
     }
+
+    //ICONA
     public void setIcona() {
-        if(tipoPezzo != null) {
+        if(pezzo.getTipo() != null) {
             ImageIcon icon;
-            if (colorePezzo.equals("nero")) {
-                icon = new ImageIcon("./res/pezzi_neri/" + tipoPezzo + ".png");
+            if (pezzo.getColore().equals("nero")) {
+                icon = new ImageIcon("./res/pezzi_neri/" + pezzo.getTipo() + ".png");
             } else {
-                icon = new ImageIcon("./res/pezzi_bianchi/" + tipoPezzo + ".png");
+                icon = new ImageIcon("./res/pezzi_bianchi/" + pezzo.getTipo() + ".png");
             }
             this.setIcon(new ImageIcon(icon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), 1)));
         }
@@ -86,13 +81,14 @@ public class QuadratoScacchiera extends JButton {
         this.setIcon(null);
     }
 
+    //OBJECT OVERRIDE
     @Override
     public String toString() {
         return "QuadratoScacchiera{" +
                 "riga=" + riga +
                 ", colonna=" + colonna +
-                ", colorePezzo='" + colorePezzo + '\'' +
-                ", tipoPezzo='" + tipoPezzo + '\'' +
+                ", colorePezzo='" + pezzo.getColore() + '\'' +
+                ", tipoPezzo='" + pezzo.getTipo() + '\'' +
                 '}';
     }
 }
