@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="Introduzione classe Giocatore e adattamento su di essa">
-      <change afterPath="$PROJECT_DIR$/src/client/EndGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/PezzoScacchiera.java" afterDir="false" />
+    <list default="true" id="d2d1aa15-fe0a-4bea-962c-c3cc0cdc0098" name="Changes" comment="Gioco funzionante (bisogna aggiustare il movimento di alcune pedine)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/LossPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MatchFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MatchFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PlayPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PlayPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/QuadratoScacchiera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/QuadratoScacchiera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Giocatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Giocatore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670707523437</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Gioco funzionante (bisogna aggiustare il movimento di alcune pedine)">
+      <created>1670759006429</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670759006429</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,7 +180,8 @@
     <MESSAGE value="movimento pedine" />
     <MESSAGE value="librerie" />
     <MESSAGE value="Introduzione classe Giocatore e adattamento su di essa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduzione classe Giocatore e adattamento su di essa" />
+    <MESSAGE value="Gioco funzionante (bisogna aggiustare il movimento di alcune pedine)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gioco funzionante (bisogna aggiustare il movimento di alcune pedine)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

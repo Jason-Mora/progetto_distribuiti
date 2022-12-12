@@ -195,44 +195,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                     return true;
                 return false;
             case "regina":
-                if(Math.abs(riga-rigaCellaSelezionata)==Math.abs(colonna-colonnaCellaSelezionata))
-                {
-                    int startIndexRow;
-                    int endIndexRow;
-                    int startIndexCol;
-                    int endIndexCol;
-                    if(riga>rigaCellaSelezionata)
-                    {
-                        startIndexRow = rigaCellaSelezionata+1;
-                        endIndexRow = riga;
-                    }
-                    else
-                    {
-                        startIndexRow = riga+1;
-                        endIndexRow = rigaCellaSelezionata;
-                    }
-                    if(colonna>colonnaCellaSelezionata)
-                    {
-                        startIndexCol = colonnaCellaSelezionata+1;
-                        endIndexCol = colonna;
-                    }
-                    else
-                    {
-                        startIndexCol = colonna+1;
-                        endIndexCol = colonnaCellaSelezionata;
-                    }
-                    for(int i=startIndexRow;i<endIndexRow;i++)
-                    {
-                        for(int j=startIndexCol;j<endIndexCol;j++)
-                        {
-                            QuadratoScacchiera qs = scacchiera[i][j];
-                            if (qs.getTipoPezzo() != null)
-                                return false;
-                        }
-                    }
-                    return true;
-                }
-                else if(colonna==colonnaCellaSelezionata && rigaCellaSelezionata!=riga) //mi sposto in colonna
+                if(colonna==colonnaCellaSelezionata && rigaCellaSelezionata!=riga) //mi sposto in colonna
                 {
                     if (rigaCellaSelezionata < riga) {
                         startIndex = rigaCellaSelezionata + 1;
@@ -266,7 +229,77 @@ public class PlayPanel extends JPanel implements ActionListener {
                     }
                     return true;
                 }
-                return false;
+                else
+                {
+                    int rigaCorrente = rigaCellaSelezionata;
+                    int colonnaCorrente = colonnaCellaSelezionata;
+                    int opR;
+                    int opC;
+
+                    if(colonna<colonnaCorrente && riga<rigaCorrente) {
+                        opR=-1;
+                        opC=-1;
+                    }
+                    else if(colonna<colonnaCorrente && riga>rigaCorrente) {
+                        opR=1;
+                        opC=-1;
+                    }
+                    else if(colonna>colonnaCorrente && riga<rigaCorrente) {
+                        opR=-1;
+                        opC=1;
+                    }
+                    else {
+                        opR=1;
+                        opC=1;
+                    }
+
+                    rigaCorrente+=opR;
+                    colonnaCorrente+=opC;
+                    while(colonnaCorrente!=colonna && rigaCorrente!=riga)
+                    {
+                        if(scacchiera[rigaCorrente][colonnaCorrente].getTipoPezzo()==null) {
+                            return false;
+                        }
+                        rigaCorrente+=opR;
+                        colonnaCorrente+=opC;
+                    }
+                    return true;
+                    /*
+                    int startIndexRow;
+                    int endIndexRow;
+                    int startIndexCol;
+                    int endIndexCol;
+                    if(riga>rigaCellaSelezionata)
+                    {
+                        startIndexRow = rigaCellaSelezionata+1;
+                        endIndexRow = riga;
+                    }
+                    else
+                    {
+                        startIndexRow = riga+1;
+                        endIndexRow = rigaCellaSelezionata;
+                    }
+                    if(colonna>colonnaCellaSelezionata)
+                    {
+                        startIndexCol = colonnaCellaSelezionata+1;
+                        endIndexCol = colonna;
+                    }
+                    else
+                    {
+                        startIndexCol = colonna+1;
+                        endIndexCol = colonnaCellaSelezionata;
+                    }
+                    for(int i=startIndexRow;i<endIndexRow;i++)
+                    {
+                        for(int j=startIndexCol;j<endIndexCol;j++)
+                        {
+                            QuadratoScacchiera qs = scacchiera[i][j];
+                            if (qs.getTipoPezzo() != null)
+                                return false;
+                        }
+                    }
+                    return true;*/
+                }
             case "re":
                 if(riga==rigaCellaSelezionata-1 && colonna==colonnaCellaSelezionata-1)
                     return true;
