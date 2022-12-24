@@ -1,7 +1,6 @@
 package client;
 
-import model.Giocatore;
-
+import model.QuadratoScacchiera;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -91,11 +90,11 @@ public class PlayPanel extends JPanel implements ActionListener {
             this.move = null;
             QuadratoScacchiera qs = (QuadratoScacchiera) actionEvent.getSource();
             System.out.println(qs.toString());
-            if (!selezionaCella && qs.getColorePezzo() != null && qs.getColorePezzo().equals(this.colore)) //ho selezionato un pezzo
+            if (!selezionaCella && qs.getPezzo().getColore() != null && qs.getPezzo().getColore().equals(this.colore)) //ho selezionato un pezzo
             {
                 rigaCellaSelezionata = qs.getRiga();
                 colonnaCellaSelezionata = qs.getColonna();
-                pezzoCellaSelezionata = qs.getTipoPezzo();
+                pezzoCellaSelezionata = qs.getPezzo().getTipo();
                 selezionaCella = true;
             } else if (selezionaCella)//devo posizionare il pezzo
             {
@@ -121,7 +120,7 @@ public class PlayPanel extends JPanel implements ActionListener {
         switch (pezzoCellaSelezionata)
         {
             case "pedina":
-                if(scacchiera[riga][colonna].getTipoPezzo()==null) {
+                if(scacchiera[riga][colonna].getPezzo().getTipo()==null) {
                     if (colore.equals("nero"))
                         return (colonna == colonnaCellaSelezionata && rigaCellaSelezionata + 1 == riga);
                     else
@@ -148,7 +147,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                     }
                     for (int i=startIndex;i<endIndex;i++) {
                         QuadratoScacchiera qs = scacchiera[i][colonnaCellaSelezionata];
-                        if (qs.getTipoPezzo() != null)
+                        if (qs.getPezzo().getTipo() != null)
                             return false;
                     }
                     return true;
@@ -165,7 +164,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                     }
                     for (int i=startIndex;i<endIndex;i++) {
                         QuadratoScacchiera qs = scacchiera[rigaCellaSelezionata][i];
-                        if (qs.getTipoPezzo() != null)
+                        if (qs.getPezzo().getTipo() != null)
                             return false;
                     }
                     return true;
@@ -207,7 +206,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                     }
                     for (int i=startIndex;i<endIndex;i++) {
                         QuadratoScacchiera qs = scacchiera[i][colonnaCellaSelezionata];
-                        if (qs.getTipoPezzo() != null)
+                        if (qs.getPezzo().getTipo() != null)
                             return false;
                     }
                     return true;
@@ -224,7 +223,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                     }
                     for (int i=startIndex;i<endIndex;i++) {
                         QuadratoScacchiera qs = scacchiera[rigaCellaSelezionata][i];
-                        if (qs.getTipoPezzo() != null)
+                        if (qs.getPezzo().getTipo() != null)
                             return false;
                     }
                     return true;
@@ -257,7 +256,7 @@ public class PlayPanel extends JPanel implements ActionListener {
                     colonnaCorrente+=opC;
                     while(colonnaCorrente!=colonna && rigaCorrente!=riga)
                     {
-                        if(scacchiera[rigaCorrente][colonnaCorrente].getTipoPezzo()==null) {
+                        if(scacchiera[rigaCorrente][colonnaCorrente].getPezzo().getTipo()==null) {
                             return false;
                         }
                         rigaCorrente+=opR;
@@ -327,11 +326,11 @@ public class PlayPanel extends JPanel implements ActionListener {
     {
         QuadratoScacchiera qs = scacchiera[sourceRow][sourceCol];
         QuadratoScacchiera qd = scacchiera[destRow][destCol];
-        qd.setTipoPezzo(qs.getTipoPezzo());
-        qd.setColorePezzo(qs.getColorePezzo());
+        qd.getPezzo().setTipo(qs.getPezzo().getTipo());
+        qd.getPezzo().setColore(qs.getPezzo().getColore());
         qd.setIcona();
-        qs.setTipoPezzo(null);
-        qs.setColorePezzo(null);
+        qs.getPezzo().setTipo(null);
+        qs.getPezzo().setColore(null);
         qs.setIcona();
     }
 
@@ -341,7 +340,7 @@ public class PlayPanel extends JPanel implements ActionListener {
         {
             for(int j=0;j<scacchiera[i].length;j++)
             {
-                if(scacchiera[i][j].getTipoPezzo()!=null && scacchiera[i][j].getTipoPezzo().equals("re"))
+                if(scacchiera[i][j].getPezzo().getTipo()!=null && scacchiera[i][j].getPezzo().getTipo().equals("re"))
                     countRe++;
                 if(countRe==2)
                     return false;
@@ -354,8 +353,8 @@ public class PlayPanel extends JPanel implements ActionListener {
         {
             for(int j=0;j<scacchiera[i].length;j++)
             {
-                if(scacchiera[i][j].getTipoPezzo()!=null && scacchiera[i][j].getTipoPezzo().equals("re"))
-                    return scacchiera[i][j].getColorePezzo();
+                if(scacchiera[i][j].getPezzo().getTipo()!=null && scacchiera[i][j].getPezzo().getTipo().equals("re"))
+                    return scacchiera[i][j].getPezzo().getColore();
             }
         }
         return null;

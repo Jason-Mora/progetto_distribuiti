@@ -1,45 +1,75 @@
 package client;
 
 import model.Giocatore;
-import server.MatchMakingService;
+import server.MatchMackingService;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class MainFrame extends JFrame implements ActionListener {
 
-    private MatchMakingService mms;
+    private MatchMackingService mms;
     private Giocatore giocatore, avversario;
     private boolean matchMacking;
-    public MainFrame(String title) throws HeadlessException {
+    private String ip;
+    private int port;
+    public MainFrame(String title, String ip, int port) throws HeadlessException, IOException {
         super(title);
+        this.ip = ip;
+        this.port = port;
         initializeFrame();
         //PANEL
         JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        //BOTTONE
-        JButton button = new JButton("Nuova partita");
-        button.addActionListener(this);
-        button.setBounds(130,100,100, 40);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(new EmptyBorder(new Insets(100, 100, 100, 100)));
 
-        panel.add(button);
+        //BOTTONE NUOVA PARTITA
+        JButton nuovaPartitaBtn = new JButton("Nuova partita");
+        nuovaPartitaBtn.addActionListener(this);
+        nuovaPartitaBtn.setAlignmentX(CENTER_ALIGNMENT);
+        //BOTTONE CHIUDI
+        JButton chiudiBtn = new JButton("Chiudi");
+        chiudiBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton b = (JButton) e.getSource();
+                Container frame = b.getParent();
+                do
+                    frame = frame.getParent();
+                while (!(frame instanceof JFrame));
+                ((JFrame) frame).dispose();
+            }
+        });
+        chiudiBtn.setAlignmentX(CENTER_ALIGNMENT);
+
+        JLabel titolo = new JLabel("SCACCHI");
+        titolo.setAlignmentX(CENTER_ALIGNMENT);
+        panel.add(titolo);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(nuovaPartitaBtn);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(chiudiBtn);
         this.add(panel);
+        this.pack();
         this.setVisible(true);
     }
 
-    public void initializeFrame() {
+    public void initializeFrame() throws IOException {
         this.giocatore = new Giocatore();
         this.matchMacking = true;
         setAvversario(null);
         this.setSize(400,500);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -48,9 +78,9 @@ public class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         try
         {
-            mms = (MatchMakingService) Naming.lookup("rmi://localhost:5099/chess");
-            giocatore.setIp(InetAddress.getLocalHost().getHostAddress());
-            giocatore.setCasualPort();
+            mms = (MatchMackingService) Naming.lookup("rmi://localhost:5099/chess");
+            giocatore.setIp(ip);
+            giocatore.setPort(port);
         }
         catch (NotBoundException | IOException e)
         {

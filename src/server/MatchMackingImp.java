@@ -9,11 +9,11 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
 
-public class MatchMakingImp extends UnicastRemoteObject implements MatchMakingService {
+public class MatchMackingImp extends UnicastRemoteObject implements MatchMackingService {
     private LinkedList<Giocatore> waitingPlayer;
     private Map<Giocatore, Giocatore> matchedPlayer;
 
-    public MatchMakingImp() throws RemoteException {
+    public MatchMackingImp() throws RemoteException {
         super();
         waitingPlayer = new LinkedList<>();
         matchedPlayer = new HashMap<>();

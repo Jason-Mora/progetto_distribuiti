@@ -9,15 +9,17 @@ import java.io.*;
 public class Client {
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        ServerSocket serverSocket = new ServerSocket(0);
+
         //FINESTRA
-        MainFrame frame = new MainFrame("SCACCHI");
+        MainFrame mainFrame = new MainFrame("SCACCHI", serverSocket.getInetAddress().getHostAddress(), serverSocket.getLocalPort());
 
         Giocatore avversario;
         Giocatore giocatore;
         //attendo di essere assegnato ad un giocatore avversario
         while(true)
         {
-            avversario = frame.getAvversario();
+            avversario = mainFrame.getAvversario();
             Thread.sleep(100);
             if(avversario != null) {
                 break;
@@ -27,52 +29,65 @@ public class Client {
         //sono stato assegnato
         if(avversario!=null)
         {
-            giocatore = frame.getGiocatore();
-            frame.dispose();
-            MatchFrame matchFrame = new MatchFrame("gioco", frame.getGiocatore(), avversario);
+            giocatore = mainFrame.getGiocatore();
+            mainFrame.setVisible(false);
+            MatchFrame matchFrame = new MatchFrame("gioco", mainFrame.getGiocatore(), avversario);
 
             //SOCKET SERVER
-            ServerSocket serverSocket = new ServerSocket(giocatore.getPort());
             Socket avversarioSocket = avversario.getSocket();
             DataInputStream readSocket = new DataInputStream(avversarioSocket.getInputStream());
             DataOutputStream writeSocket = new DataOutputStream(serverSocket.accept().getOutputStream());
 
             //GAME
             boolean turno = giocatore.isWhite();
+            boolean connectionError = false;
             PlayPanel scacchiera = matchFrame.getScacchiera();
             scacchiera.setTurno(turno);
-            while(!scacchiera.giocoFinito())
-            {
-                if(turno)
-                {
-                    String move = null;
-                    while(move==null)
-                    {
-                        move = scacchiera.getMove();
-                        Thread.sleep(100);
-                        if(move != null) {
-                            break;
+            try {
+                while (!scacchiera.giocoFinito()) {
+                    if (turno) {
+                        String move = null;
+                        while (move == null) {
+                            move = scacchiera.getMove();
+                            Thread.sleep(100);
+                            if (move != null) {
+                                break;
+                            }
                         }
+                        scacchiera.resetMove();
+                        writeSocket.writeUTF(move);
+                        writeSocket.flush();
+                        turno = false;
+                        scacchiera.setTurno(false);
+                    } else {
+                        String str = readSocket.readUTF();
+                        String[] moveString = str.split(" ");
+                        scacchiera.muoviPezzo(Integer.parseInt(moveString[0]), Integer.parseInt(moveString[1]), Integer.parseInt(moveString[2]), Integer.parseInt(moveString[3]));
+                        turno = true;
+                        scacchiera.setTurno(true);
                     }
-                    scacchiera.resetMove();
-                    writeSocket.writeUTF(move);
-                    writeSocket.flush();
-                    turno = false;
-                    scacchiera.setTurno(false);
-                }
-                else
-                {
-                    String str = readSocket.readUTF();
-                    String[] moveString = str.split(" ");
-                    scacchiera.muoviPezzo(Integer.parseInt(moveString[0]), Integer.parseInt(moveString[1]), Integer.parseInt(moveString[2]), Integer.parseInt(moveString[3]));
-                    turno = true;
-                    scacchiera.setTurno(true);
                 }
             }
-            EndGame endGameFrame = new EndGame(giocatore, scacchiera.getVincitore());
-            matchFrame.dispose();
-            System.out.println("FINE");
-            endGameFrame.setVisible(true);
+            catch (SocketException e)
+            {
+                connectionError = true;
+            }
+            finally {
+                readSocket.close();
+                writeSocket.close();
+                avversarioSocket.close();
+                serverSocket.close();
+            }
+
+            if(!connectionError) {
+                EndGame endGameFrame = new EndGame(giocatore, scacchiera.getVincitore());
+                matchFrame.dispose();
+                System.out.println("FINE");
+                endGameFrame.setVisible(true);
+            }
+            else {
+                mainFrame.setVisible(true);
+            }
         }
     }
 }

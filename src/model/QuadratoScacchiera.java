@@ -1,12 +1,14 @@
-package client;
+package model;
 
+import client.PlayPanel;
 import model.PezzoScacchiera;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class QuadratoScacchiera extends JButton {
-    JPanel parent;
+    private JPanel parent;
+    private Color backgroundColor;
     private int riga;
     private int colonna;
     private PezzoScacchiera pezzo;
@@ -14,9 +16,10 @@ public class QuadratoScacchiera extends JButton {
     public QuadratoScacchiera(PlayPanel parent, Color backgColor, String colorePezzo, String tipoPezzo) {
         super();
         this.parent = parent;
+        this.backgroundColor = backgColor;
         this.setSize();
-        this.setBackground(backgColor);
-        this.pezzo = new PezzoScacchiera(colorePezzo, tipoPezzo);
+        this.setBackground(backgroundColor);
+        setPezzo(new PezzoScacchiera(colorePezzo, tipoPezzo));
         setIcona();
     }
     public QuadratoScacchiera(PlayPanel parent, String colorePezzo, String tipoPezzo) {
@@ -49,17 +52,11 @@ public class QuadratoScacchiera extends JButton {
     }
 
     //PEZZO
-    public String getColorePezzo() {
-        return pezzo.getColore();
+    public PezzoScacchiera getPezzo() {
+        return pezzo;
     }
-    public void setColorePezzo(String colorePezzo) {
-        pezzo.setColore(colorePezzo);
-    }
-    public String getTipoPezzo() {
-        return pezzo.getTipo();
-    }
-    public void setTipoPezzo(String tipoPezzo) {
-        pezzo.setTipo(tipoPezzo);
+    public void setPezzo(PezzoScacchiera pezzo) {
+        this.pezzo = pezzo;
     }
 
     //ICONA

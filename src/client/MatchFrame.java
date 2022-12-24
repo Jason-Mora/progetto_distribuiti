@@ -1,21 +1,38 @@
 package client;
 
 import model.Giocatore;
+import server.MatchMackingImp;
+import server.MatchMackingService;
+
 import javax.swing.*;
 import java.awt.*;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class MatchFrame extends JFrame {
     private Giocatore giocatore, avversario;
     PlayPanel scacchiera;
-    public MatchFrame(String title, Giocatore giocatore, Giocatore avversario) throws HeadlessException {
+    public MatchFrame(String title, Giocatore giocatore, Giocatore avversario) throws HeadlessException, RemoteException {
         super(title + " - " + giocatore.getColore());
         this.giocatore = giocatore;
         this.avversario = avversario;
         this.initializeFrame();
-        //SCHACCHIERA
+        JPanel contentPane = new JPanel(new BorderLayout());
         this.scacchiera = new PlayPanel(this);
-        this.setContentPane(scacchiera);
+        contentPane.add(this.scacchiera, BorderLayout.CENTER);
+        this.setContentPane(contentPane);
         this.setVisible(true);
+        MatchMackingService mms = null;
+        try {
+            mms = (MatchMackingService) Naming.lookup("rmi://localhost:5099/chess");
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        mms.leaveMatchmaking(giocatore);
     }
 
     public void setSize() {
@@ -25,8 +42,7 @@ public class MatchFrame extends JFrame {
         this.setSize(height, height);
     }
 
-    public void initializeFrame()
-    {
+    public void initializeFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize();
         this.setResizable(false);

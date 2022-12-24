@@ -10,8 +10,9 @@ public class EndGame extends JFrame {
     public EndGame(Giocatore g, String vincitore)
     {
         super();
-        this.setTitle(g.getColore().equals(vincitore)?"Hai vinto":"Hai perso");
+        this.setTitle("Giocatore "+g.getColore()+": "+(g.getColore().equals(vincitore)?"Hai vinto":"Hai perso"));
         this.setSize(300, 300);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //PANNELLO
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
